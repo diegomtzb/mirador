@@ -4,15 +4,15 @@ $(document).ready(function(){
 
 //Mostrar mapa
 function showPosition() {
-    lat = "10.422026";
-    lon = "-75.533604";
+    lat = "10.416971";
+    lon = "-75.537282";
     latlon = new google.maps.LatLng(lat, lon);
     mapholder = document.getElementById('mapholder');
     //mapholder.style.height = '250px';
     //mapholder.style.width = '500px';
 
     var myOptions = {
-        center:latlon,zoom:14,
+        center:latlon,zoom:16,
         mapTypeId:google.maps.MapTypeId.ROADMAP,
         mapTypeControl:false,
         navigationControlOptions:{style:google.maps.NavigationControlStyle.SMALL}
