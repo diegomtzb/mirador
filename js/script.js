@@ -1,5 +1,4 @@
 $(document).ready(function(){
-
 });
 
 //Mostrar mapa
@@ -28,7 +27,7 @@ function slick_slider_init() {
         slidesToShow: 1,
         slidesToScroll: 1,
         autoplay: true,
-        autoplaySpeed: 4000,
+        autoplaySpeed: 5000,
 
         onBeforeChange: function() {
             var slideIndex = ($('.main-slider').slickCurrentSlide());
@@ -46,6 +45,68 @@ function slick_slider_init() {
 
         }
     });
+
+    $('.planos_slider').slick({
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 3000
+    });
 }
+
+// Set up an event listener for the contact form.
+$( "#contact-form" ).submit(function( event ) {
+
+    event.preventDefault();
+
+    var this_name = $( "#contact-form input[name='name']");
+    var this_email = $( "#contact-form input[name='email']");
+    var this_ciudad = $( "#contact-form input[name='ciudad']");
+    var this_telefono = $( "#contact-form input[name='telefono']");
+    var this_mensaje = $( "#contact-form textarea[name='mensaje']");
+    var this_enviar = $( "#contact-form input[name='enviar']");
+
+
+    var dataString = {
+        "name" : this_name.val(),
+        "email" : this_email.val(),
+        "ciudad" : this_ciudad.val(),
+        "telefono" : this_telefono.val(),
+        "mensaje" : this_mensaje.val()
+    };
+
+    this_name.val("");
+    this_email.val("");
+    this_ciudad.val("");
+    this_telefono.val("");
+    this_mensaje.val("");
+    this_enviar.attr('disabled', 'disabled');
+
+
+    $.ajax({
+        type: "POST",
+        url: "contacto.php",
+        data: dataString,
+        cache: true,
+        success: function(html){
+            $("#contact-message").css("display", "block");
+            $("#contact-message").html(html);
+            this_enviar.removeAttr('disabled');
+        }
+    });
+});
+
+$( ".about-section .planos_slider .image img" ).hover(
+    function() {
+        //hover on
+
+        //$(".about-section .planos_slider .image p.caption").toggle( "slow" );
+    }, function() {
+        //hover out
+        //$(".about-section .planos_slider .image p.caption").css('width', '0' );
+    }
+);
+
+
 
 
